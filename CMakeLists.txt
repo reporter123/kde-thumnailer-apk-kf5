@@ -1,5 +1,6 @@
 project(kde-thumbnailer-apk)
 cmake_minimum_required(VERSION 2.8.12)
+set(QT_MIN_VERSION "5.2.0")
 
 set(SHARED_MIME_INFO_MINIMUM_VERSION "0.30")
 find_package(ECM 0.0.11 REQUIRED NO_MODULE)
@@ -10,8 +11,8 @@ include(KDECMakeSettings)
 include(KDECompilerSettings)
 include(FeatureSummary)
 
-find_package(Qt5 REQUIRED COMPONENTS Widgets)
-find_package(KF5 REQUIRED COMPONENTS KDELibs4Support) #CoreAddons Solid 
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Widgets Gui)
+find_package(KF5 REQUIRED COMPONENTS KIO Archive) #CoreAddons Solid 
 
 find_package(SharedMimeInfo REQUIRED)
 
@@ -20,9 +21,9 @@ include_directories(${QT_INCLUDES}) # ${KDE4_INCLUDES}
 
 set(apkthumbnail_SRCS apkcreator.cpp)
 
-kde4_add_plugin(apkthumbnail ${apkthumbnail_SRCS})
+add_library(apkthumbnail MODULE ${apkthumbnail_SRCS})
 target_link_libraries(apkthumbnail
-    KF5::KDELibs4Support KF5::KIOCore KF5::Archive
+    Qt5::Gui KF5::KIOCore KF5::Archive KF5::KIOWidgets
 )
 
 install(TARGETS apkthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
