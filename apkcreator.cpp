@@ -300,6 +300,7 @@ static QStringList get_application_icon_resource_path(const QByteArray& stream, 
 
 bool ApkCreator::create( const QString& path, int width, int height, QImage& img )
 {
+    #pragma unused(width, height)
     KZip zip( path );
     if ( !zip.open( QIODevice::ReadOnly ) )
         return false;
