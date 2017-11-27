@@ -334,7 +334,7 @@ bool ApkCreator::create( const QString& path, int width, int height, QImage& img
 
         QImage icon;
         icon.loadFromData( iconFile->data() );
-        if ( icon.width() * icon.height() > img.width() * img.height() )
+        if (img.isNull() || icon.width() * icon.height() > img.width() * img.height() )
             img = icon;
     }
 
