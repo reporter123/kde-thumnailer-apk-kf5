@@ -1,5 +1,5 @@
 project(kde-thumbnailer-apk)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.0.2)
 set(QT_MIN_VERSION "5.4.0")#Default logging levels implemented in 5.4+
 set(KF5_MIN_VERSION "5.14.0")#5.14 needed for ecm_qt_declare_logging_category
 
